@@ -7,7 +7,7 @@
 #include <math.h> 
 #include <iostream> 
 
-int main()
+int mains()
 {
 	setlocale(LC_CTYPE, "");
 	printf_s("введите размер массива(<=10)");

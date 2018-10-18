@@ -19,8 +19,11 @@ int main() {
 	setlocale(LC_CTYPE, "");
 	// 1)
 	int arr[10];
+	int n;
+	printf("введите числа для массива(только целые числа!) ХД\n");
 	for (int i = 0; i < 10; i++) {
-		arr[i] = i * i;
+		scanf_s("%d", &n);
+		arr[i] = n;
 	}
 	int arr2[10];
 	for (int i = 0; i < 10; i++) {
@@ -31,23 +34,24 @@ int main() {
 			arr[i] = arr[i + 1];
 		}
 	}
+	printf("Массив с удаленными элементами:\n");
 	for (int i = 0; i < 5; i++) {
-		printf("%d\n", arr[i]);
+		printf("[%d] \n", arr[i]);
 	}
 
 	// 2)
 	int brr[10];
 	int bh[10];
+	int nn;
 	printf("введите элементы массива б\n");
 	for (int i = 0; i < 10; i++) {
-		int n;
-		scanf_s("%d", &n);
-		brr[i] = n;
+		scanf_s("%d", &nn);
+		brr[i] = nn;
 		bh[i] = arr2[i] * brr[i];
 	}
-
+	printf("Массив b(h)\n");
 	for (int i = 0; i < 10; i++) {
-		printf("%d\n", bh[i]);
+		printf("[%d] ", bh[i]);
 	}
 
 	// 3)Сортировка нового а[ ] по возрастанию
@@ -62,6 +66,7 @@ int main() {
 		}
 	}
 	printf("\n-----\n");
+	printf("Массив а[] в порядке возрастания\n ");
 	for (int i = 0; i < 5; i++) {
 		printf("%d\n", arr[i]);
 	}

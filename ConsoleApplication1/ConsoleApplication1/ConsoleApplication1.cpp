@@ -81,25 +81,25 @@ int main()
 		printf("%d = %f\n", i, arr[i]);
 	}
 
-	int maxx, minn, ind_maxx, ind_minn;
+	int ind_min;
 
-	maxx = arr[0];
-	minn = arr[0];
-	ind_maxx = 0;
-	ind_minn = 0;
+	max = arr[0];
+	min = arr[0];
+	ind_max = 0;
+	ind_min = 0;
 
 	for (int i = 0; i < nn; i++) {
-		if (arr[i] > maxx) {
-			maxx = arr[i];
-			ind_maxx = i;
+		if (arr[i] > max) {
+			max = arr[i];
+			ind_max = i;
 		}
-		if (arr[i] < minn) {
-			minn= arr[i];
-			ind_minn = i;
+		if (arr[i] < min) {
+			min= arr[i];
+			ind_min = i;
 		}
-		if (arr[i] == minn) {
+		if (arr[i] == min) {
 			
-			ind_minn= i;
+			ind_min= i;
 		}
 	}
 
@@ -110,11 +110,11 @@ int main()
 
 	// здесь всё так же
 	float varr;
-	varr = arr[ind_maxx];
-	arr[ind_maxx] = arr[ind_min];
+	varr = arr[ind_max];
+	arr[ind_max] = arr[ind_min];
 	arr[ind_min] = varr;
 
-	printf("элемента #max после = %f \nэлемент #min после = %f\n", arr[ind_maxx], arr[ind_min]);// выводим измененные данные
+	printf("элемента #max после = %f \nэлемент #min после = %f\n", arr[ind_max], arr[ind_min]);// выводим измененные данные
 	
 	// будем искать элементы больше последнего нуля
 

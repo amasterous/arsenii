@@ -80,9 +80,6 @@ int main()
 		return 0;
 	}
 	
-	for (int i = 0; i < nn; i++) {
-		printf("%d = %f\n", i, arr[i]);
-	}
 
 	int ind_min;
 

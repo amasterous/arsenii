@@ -22,11 +22,10 @@ int main()
 		}
 	}
 	float max, min;
-	int ind_max, ind_min;
+	int ind_max;
 
 	max = arr[0]; // начальное значение максимума
 	min = arr[0];// начальное значение минимума
-	ind_min = 0; // начальное значние индекса минимального элемента
 	ind_max = 0;// начальное значние индекса максимального элемента
 	for (int i = 1; i < nn; i++) {
 		if (arr[i] > max) { //находим максимальный элемент
@@ -35,13 +34,10 @@ int main()
 		}
 		if (arr[i] < min) {
 			min = arr[i]; //присваем новое значение переменной минимального элемента
-			ind_min = i; //добавляем индекс нового минимального элемента
 		}
-		if (arr[i] == min) {
-			ind_min = i; //если значение массива равно старому значению, то  меняем индекс минимального массива
-		}
+
 	}
-	printf("min = %f(index=%d) \nmax = %f(index = %d)\n", min, ind_min, max, ind_max); // выводим данные
+	printf("min = %f \nmax = %f(index = %d)\n", min, max, ind_max); // выводим данные
 
 
 	printf("введите число\n");
@@ -63,34 +59,63 @@ int main()
 	int d, b;
 	scanf_s("%d", &d); // номер первого элемента
 	scanf_s("%d", &b); // номер второго элемента 
+	
 
 	
-	if ((d < nn && d >= 0) && (b << nn && b >= 0)) {
-		printf("элемента #%d до = %f \nэлемент #%d до= %f\n", d, arr[d], b, arr[b]); //выводим изначальные значения
-		float var;//переменная для хранения изначального значения первого элемента
+	if ((d < nn && d >= 0) && (b < nn && b >= 0)) {
+		printf("элемента №%d до = %f \nэлемент №%d до= %f\n", d, arr[d], b, arr[b]); //выводим изначальные значения
+		float var;//перемен	ная для хранения изначального значения первого элемента
 		var = arr[d];
 		arr[d] = arr[b]; // изменяем значние первого жлемента
 		arr[b] = var; // изменяем значение второго элемента на сохраненное значение
 
-		printf("элемента #%d после = %f \nэлемент #%d после = %f\n", d, arr[d], b, arr[b]); // выводим измененные данные
+		printf("элемента №%d после = %f \nэлемент №%d после = %f\n", d, arr[d], b, arr[b]); // выводим измененные данные
 	}
 	else {
 		printf("индекс неправильный");
 		_getch();
 		return 0;
 	}
+	
+	for (int i = 0; i < nn; i++) {
+		printf("%d = %f\n", i, arr[i]);
+	}
 
+	int maxx, minn, ind_maxx, ind_minn;
+
+	maxx = arr[0];
+	minn = arr[0];
+	ind_maxx = 0;
+	ind_minn = 0;
+
+	for (int i = 0; i < nn; i++) {
+		if (arr[i] > maxx) {
+			maxx = arr[i];
+			ind_maxx = i;
+		}
+		if (arr[i] < minn) {
+			minn= arr[i];
+			ind_minn = i;
+		}
+		if (arr[i] == minn) {
+			
+			ind_minn= i;
+		}
+	}
+
+
+	
 	//меняем местами максимальный и минимальный элементы
 	printf("элемента #max до = %f \nэлемент #min до= %f\n", arr[ind_max], arr[ind_min]); //выводим начальные данные
 
 	// здесь всё так же
 	float varr;
-	varr = arr[ind_max];
-	arr[ind_max] = arr[ind_min];
+	varr = arr[ind_maxx];
+	arr[ind_maxx] = arr[ind_min];
 	arr[ind_min] = varr;
 
-	printf("элемента #max после = %f \nэлемент #min после = %f\n", arr[ind_max], arr[ind_min]);// выводим измененные данные
-
+	printf("элемента #max после = %f \nэлемент #min после = %f\n", arr[ind_maxx], arr[ind_min]);// выводим измененные данные
+	
 	// будем искать элементы больше последнего нуля
 
 	int kkk;

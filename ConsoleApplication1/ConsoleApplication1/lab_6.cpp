@@ -61,7 +61,7 @@ int main() {
 
 	output_array(arr, kolvo_strok, kolvo_stolbcov);
 
-	printf("max = %f", max_elem(arr, kolvo_strok, kolvo_stolbcov));
+	printf("max = %f\n", max_elem(arr, kolvo_strok, kolvo_stolbcov));
 	int x, xx, y, yy;
 
 	printf("введите номер строки: ");

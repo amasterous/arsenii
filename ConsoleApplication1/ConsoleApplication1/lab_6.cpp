@@ -63,14 +63,24 @@ int main() {
 
 	printf("max = %f", max_elem(arr, kolvo_strok, kolvo_stolbcov));
 	int x, xx, y, yy;
+
 	printf("введите номер строки: ");
-	scanf_s("%f", &x);
+	scanf_s("%d", &x);
 	printf("введите номер столбец: ");
-	scanf_s("%f", &xx);
+	scanf_s("%d", &xx);
 	printf("введите номер строки(2): ");
-	scanf_s("%f", &x);
+	scanf_s("%d", &y);
 	printf("введите номер столбец(2): ");
-	scanf_s("%f", &xx);
+	scanf_s("%d", &yy);
+
+	printf("do %f\n", arr[x][xx]);
+	printf("do %f\n", arr[y][yy]);
+	
+	change_elems(arr, x, xx, y, yy);
+
+	printf("posle %f\n", arr[x][xx]);
+	printf("posle %f\n", arr[y][yy]);
+
 	printf("%f");
 
 }

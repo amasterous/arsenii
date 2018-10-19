@@ -15,7 +15,7 @@
 3)Сортировка нового а[ ] по возрастанию
 */
 
-int main() {
+int mainq() {
 	setlocale(LC_CTYPE, "");
 	// 1)
 	int arr[10];

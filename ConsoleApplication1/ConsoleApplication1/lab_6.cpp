@@ -1,4 +1,4 @@
-#pragma warning(disable:4996) 
+п»ї#pragma warning(disable:4996) 
 #include "pch.h" 
 #include <conio.h> 
 #include <stdio.h> 
@@ -52,9 +52,9 @@ int main() {
 
 	int kolvo_strok;
 	int kolvo_stolbcov;
-	printf("введите кол-во строк (<10)");
+	printf("РІРІРµРґРёС‚Рµ РєРѕР»-РІРѕ СЃС‚СЂРѕРє (<10)");
 	scanf_s("%d", &kolvo_strok);
-	printf("введите кол-во столбцов (<10)");
+	printf("РІРІРµРґРёС‚Рµ РєРѕР»-РІРѕ СЃС‚РѕР»Р±С†РѕРІ (<10)");
 	scanf_s("%d", &kolvo_stolbcov);
 
 	input_array(arr,kolvo_strok, kolvo_stolbcov);
@@ -64,13 +64,13 @@ int main() {
 	printf("max = %f\n", max_elem(arr, kolvo_strok, kolvo_stolbcov));
 	int x, xx, y, yy;
 
-	printf("введите номер строки: ");
+	printf("РІРІРµРґРёС‚Рµ РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё: ");
 	scanf_s("%d", &x);
-	printf("введите номер столбец: ");
+	printf("РІРІРµРґРёС‚Рµ РЅРѕРјРµСЂ СЃС‚РѕР»Р±РµС†: ");
 	scanf_s("%d", &xx);
-	printf("введите номер строки(2): ");
+	printf("РІРІРµРґРёС‚Рµ РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё(2): ");
 	scanf_s("%d", &y);
-	printf("введите номерр столбец(2): ");
+	printf("РІРІРµРґРёС‚Рµ РЅРѕРјРµСЂСЂ СЃС‚РѕР»dР±РµС†(2): ");
 	scanf_s("%d", &yy);
 
 	printf("do %f\n", arr[x][xx]);

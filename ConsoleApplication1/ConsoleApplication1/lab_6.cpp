@@ -70,7 +70,7 @@ int main() {
 	scanf_s("%d", &xx);
 	printf("введите номер строки(2): ");
 	scanf_s("%d", &y);
-	printf("введите номерр столdбец(2): ");
+	printf("введите номерр столбец(2): ");
 	scanf_s("%d", &yy);
 
 	printf("do %f\n", arr[x][xx]);

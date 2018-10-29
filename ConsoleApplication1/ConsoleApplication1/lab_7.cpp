@@ -7,48 +7,82 @@
 #include <iostream> 
 
 
-void initialize_arr(int arr[10][10], int x, int y) {
+void change_ten(int a[10][10], int x, int y) {
+	for (int i = 0; i < y; i++)
+	{
+		if (a[x][i] > 10) {
+			a[x][i] = 0;
+		}
+	}
+	
+}
+
+void change_stolbci(int a[10][10], int first_x, int y, int second_x) {
+	int var;
+	for (int i = 0; i < y; i++)
+	{
+		var = a[i][first_x];
+		a[i][first_x] = a[i][second_x];
+		a[i][second_x] = var;
+	}
+}
+
+void initialize_b(int b[10], int x) {
+	int znach_b;
+	printf("Введите значения элементов\n");
+	for (int i = 0; i < x; i++) {
+		scanf_s("%d", &znach_b);
+		b[i] = znach_b;
+	}
+}
+
+void initialize_a(int a[10][10], int x, int y) {
 	int n;
 	printf("Введите значения элементов\n");
 	for (int i = 0; i < x; i++) {
 		for (int j = 0; j < y; j++)
 		{
 			scanf_s("%d", &n);
-			arr[i][j] = n;
+			a[i][j] = n;
 		}
 	}
 }
 
-void get_max_and_min(int arr[10][10], int x, int y, int ind_min_x, int ind_min_y, int ind_max_x, int ind_max_y, int min, int max){
+void make_arr_c(int c[10][10], int a[10][10], int b[10], int x, int y) {
 	for (int i = 0; i < x; i++)
 	{
 		for (int j = 0; j < y; j++)
 		{
-			if (arr[i][j] > max)
-			{
-				max = arr[i][j];
-				ind_max_x = i;
-				ind_max_y = i;
-			}
-			if (arr[i][j] <= min)
-			{
-				min = arr[i][j];
-				ind_min_x = i;
-				ind_min_y = i;
-			}
+			c[i][j] = a[i][j] + b[i];
 		}
 	}
 }
 
-int* get_max(int arr[10][10], int x, int y, int* ar) {
-	int max = arr[0][0];
+void search_stolbec_with_max_sum(int arr[10][10], int x, int y) {
+	int max_sum = arr[0][0];
+	int prom_sum = 0;
+	for (int i = 0; i < y; i++)
+	{
+		for (int j = 0; j < x; j++)
+		{
+			prom_sum = prom_sum + arr[j][i];
+			
+		}
+	}
+	printf("%d", prom_sum);
+}
+
+int* get_max(int a[10][10], int x, int y, int* ar) {
+	int max = a[0][0];
+	ar[0] = 0;
+	ar[1] = 0;
 	for (int i = 0; i < x; i++)
 	{
 		for (int j = 0; j < y; j++)
 		{
-			if (arr[i][j] > max)
+			if (a[i][j] > max)
 			{
-				max = arr[i][j];
+				max = a[i][j];
 				ar[0] = i;
 				ar[1] = j;
 			}
@@ -57,15 +91,17 @@ int* get_max(int arr[10][10], int x, int y, int* ar) {
 	return ar;
 }
 
-int* get_min(int arr[10][10], int x, int y, int* ar) {
-	int min = arr[0][0];
+int* get_min(int a[10][10], int x, int y, int* ar) {
+	int min = a[0][0];
+	ar[0] = 0;
+	ar[1] = 0;
 	for (int i = 0; i < x; i++)
 	{
 		for (int j = 0; j < y; j++)
 		{
-			if (arr[i][j] <= min)
+			if (a[i][j] <= min)
 			{
-				min = arr[i][j];
+				min = a[i][j];
 				ar[0] = i;
 				ar[1] = j;
 			}
@@ -74,19 +110,19 @@ int* get_min(int arr[10][10], int x, int y, int* ar) {
 	return ar;
 }
 
-void change(int arr[10][10], int min_x, int min_y, int max_x, int max_y) {
-	int var = arr[min_x][min_y];
-	arr[min_x][min_y] = arr[max_x][max_y];
-	arr[max_x][max_y] = var;
+void change(int a[10][10], int min_x, int min_y, int max_x, int max_y) {
+	int var = a[min_x][min_y];
+	a[min_x][min_y] = a[max_x][max_y];
+	a[max_x][max_y] = var;
 }
 
-void printf_arr(int arr[10][10], int x, int y) {
+void printf_a(int a[10][10], int x, int y) {
 	printf("\nВывод массива\n");
 	for (int i = 0; i < x; i++)
 	{
 		for (int j = 0; j < y; j++)
 		{
-			printf("%d ", arr[i][j]);
+			printf("%d ", a[i][j]);
 		}
 		printf("\n");
 	}
@@ -95,23 +131,44 @@ void printf_arr(int arr[10][10], int x, int y) {
 
 int main() {
 	setlocale(LC_CTYPE, "");
-	int arr[10][10];
+	int a[10][10];
 	int x, y, n; // x - stroka, y - stolbec
 	printf("Введите кол-во строк и столбцов: \n");
 	scanf_s("%d", &x);
 	scanf_s("%d", &y);
-	initialize_arr(arr, x, y);
-	printf_arr(arr, x, y);
-	int max = arr[0][0];
-	int min = arr[0][0];
+	initialize_a(a, x, y);
+	printf_a(a, x, y);
 	int ar_max[2];
 	int ar_min[2];
-	get_max(arr, x, y, ar_max);
-	get_min(arr, x, y, ar_min);
-	change(arr, ar_min[0], ar_min[1], ar_max[0], ar_max[1]);
-	printf_arr(arr, x, y);
+	get_max(a, x, y, ar_max);
+	get_min(a, x, y, ar_min);
+	change(a, ar_min[0], ar_min[1], ar_max[0], ar_max[1]);
+	printf_a(a, x, y);
 
+	int nn; // индекс строки в которой меняем значения
+	printf("введите индекс строки в которой меняем значения: ");
+	scanf_s("%d", &nn);
+	change_ten(a, nn, y);
+	printf_a(a, x, y);
+	printf("введите номера столбцов\n");
+	int aa, ss; //переменные для столбцов
+	scanf_s("%d", &aa);
+	scanf_s("%d", &ss);
 
+	change_stolbci(a, aa, y, ss);
 
+	printf_a(a, x, y);
 
+	// int bn; // размер массива b
+	// printf("введите размер массива b \n");
+	// scanf_s("%d", &bn);
+	int b[10];
+	initialize_b(b, x);
+	int c[10][10];
+
+	make_arr_c(c, a, b, x, y);
+	printf("массив с \n");
+	printf_a(c, x, y);
+
+	search_stolbec_with_max_sum(a, x, y);
 }

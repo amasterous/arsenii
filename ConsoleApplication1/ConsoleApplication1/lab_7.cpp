@@ -1,4 +1,4 @@
-#pragma warning(disable:4996) 
+п»ї#pragma warning(disable:4996) 
 #include "pch.h" 
 #include <conio.h> 
 #include <stdio.h> 
@@ -9,7 +9,7 @@
 
 void initialize_arr(int arr[10][10], int x, int y) {
 	int n;
-	printf("Введите значения элементов\n");
+	printf("Р’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ\n");
 	for (int i = 0; i < x; i++) {
 		for (int j = 0; j < y; j++)
 		{
@@ -81,7 +81,7 @@ void change(int arr[10][10], int min_x, int min_y, int max_x, int max_y) {
 }
 
 void printf_arr(int arr[10][10], int x, int y) {
-	printf("\nВывод массива\n");
+	printf("\nР’С‹РІРѕРґ РјР°СЃСЃРёРІР°\n");
 	for (int i = 0; i < x; i++)
 	{
 		for (int j = 0; j < y; j++)
@@ -97,7 +97,7 @@ int main() {
 	setlocale(LC_CTYPE, "");
 	int arr[10][10];
 	int x, y, n; // x - stroka, y - stolbec
-	printf("Введите кол-во строк и столбцов: \n");
+	printf("Р’РІРµРґРёС‚Рµ РєРѕР»-РІРѕ СЃС‚СЂРѕРє Рё СЃС‚РѕР»Р±С†РѕРІ: \n");
 	scanf_s("%d", &x);
 	scanf_s("%d", &y);
 	initialize_arr(arr, x, y);

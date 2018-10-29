@@ -7,7 +7,6 @@
 #include <math.h> 
 #include <iostream> 
 
-
 float input_array(float arr[10][10],int kolvo_strok,int kolvo_stolbcov) {
 
 	for (int i = 0; i < kolvo_strok; i++) {
@@ -81,6 +80,5 @@ int main() {
 	printf("posle %f\n", arr[x][xx]);
 	printf("posle %f\n", arr[y][yy]);
 
-	printf("%f");
 
 }

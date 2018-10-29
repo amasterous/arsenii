@@ -29,7 +29,7 @@ void change_stolbci(int a[10][10], int first_x, int y, int second_x) {
 
 void initialize_b(int b[10], int x) {
 	int znach_b;
-	printf("Введите значения элементов\n");
+	printf("Введите значения элементов для массива b\n");
 	for (int i = 0; i < x; i++) {
 		scanf_s("%d", &znach_b);
 		b[i] = znach_b;
@@ -38,7 +38,7 @@ void initialize_b(int b[10], int x) {
 
 void initialize_a(int a[10][10], int x, int y) {
 	int n;
-	printf("Введите значения элементов\n");
+	printf("Введите значения элементов для массива а\n");
 	for (int i = 0; i < x; i++) {
 		for (int j = 0; j < y; j++)
 		{
@@ -58,18 +58,25 @@ void make_arr_c(int c[10][10], int a[10][10], int b[10], int x, int y) {
 	}
 }
 
-void search_stolbec_with_max_sum(int arr[10][10], int x, int y) {
+int search_stolbec_with_max_sum(int arr[10][10], int x, int y) {
 	int max_sum = arr[0][0];
 	int prom_sum = 0;
+	int stolb_num_max = 0;
+	int stolb_num = 0;
 	for (int i = 0; i < y; i++)
 	{
 		for (int j = 0; j < x; j++)
 		{
 			prom_sum = prom_sum + arr[j][i];
-			
+			stolb_num = i;
+		}
+		if (prom_sum > max_sum) {
+			stolb_num_max = stolb_num;
+			prom_sum = 0;
 		}
 	}
-	printf("%d", prom_sum);
+	return stolb_num_max;
+	
 }
 
 int* get_max(int a[10][10], int x, int y, int* ar) {
@@ -150,7 +157,7 @@ int main() {
 	scanf_s("%d", &nn);
 	change_ten(a, nn, y);
 	printf_a(a, x, y);
-	printf("введите номера столбцов\n");
+	printf("введите номера столбцов для перемещения\n");
 	int aa, ss; //переменные для столбцов
 	scanf_s("%d", &aa);
 	scanf_s("%d", &ss);
@@ -170,5 +177,5 @@ int main() {
 	printf("массив с \n");
 	printf_a(c, x, y);
 
-	search_stolbec_with_max_sum(a, x, y);
+	printf("%d", search_stolbec_with_max_sum(a, x, y));
 }

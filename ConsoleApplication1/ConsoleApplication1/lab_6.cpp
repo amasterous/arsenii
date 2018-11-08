@@ -9,10 +9,11 @@
 
 
 float input_array(float arr[10][10],int kolvo_strok,int kolvo_stolbcov) {
-
+	float nn;
 	for (int i = 0; i < kolvo_strok; i++) {
 		for (int j = 0; j < kolvo_stolbcov; j++) {
-			arr[i][j] = i * j;
+			scanf_s("&f", &nn);
+			arr[i][j] = nn ;
 		}
 	}
 	return arr[kolvo_strok][kolvo_stolbcov];
@@ -21,7 +22,7 @@ float input_array(float arr[10][10],int kolvo_strok,int kolvo_stolbcov) {
 void output_array(float arr[10][10], int kolvo_strok, int kolvo_stolbcov) {
 	for (int i = 0; i < kolvo_strok; i++) {
 		for (int j = 0; j < kolvo_stolbcov; j++) {
-			printf("[%d][%d] = %f\n", i, j, arr[i][j]);
+			printf("%7f\n",  arr[i][j]);
 		}
 	}
 }

@@ -20,7 +20,7 @@ int main() {
 	// 1)
 	int arr[10];
 	int n;
-	printf("введите числа для массива(только целые числа!) ХД\n");
+	printf("введите размер массива ) \n");
 	int nnn;
 	scanf_s("%d", &nnn);
 	for (int i = 0; i < nnn; i++) {

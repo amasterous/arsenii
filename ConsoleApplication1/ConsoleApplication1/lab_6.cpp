@@ -11,7 +11,7 @@ float input_array(float arr[10][10],int kolvo_strok,int kolvo_stolbcov) {
 	float nn;
 	for (int i = 0; i < kolvo_strok; i++) {
 		for (int j = 0; j < kolvo_stolbcov; j++) {
-			scanf_s("&f", &nn);
+			scanf_s("%f", &nn);
 			arr[i][j] = nn ;
 		}
 	}
@@ -45,7 +45,7 @@ void change_elems(float arr[10][10], int i, int j, int i2, int j2) {
 	arr[i2][j2] = varr;
 }
 
-int main() {
+int mainq() {
 	setlocale(LC_CTYPE, "");
 
 	float arr[10][10];

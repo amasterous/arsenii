@@ -7,7 +7,7 @@
 #include <math.h> 
 #include <iostream> 
 
-int mains()
+int main()
 {
 	setlocale(LC_CTYPE, "");
 	printf_s("введите размер массива(<=10)");
@@ -52,7 +52,7 @@ int mains()
 	}
 	// выводим результаты
 	printf("count = %d\n", count);
-	printf("введите два числа(индексы массивa < 10) \n");
+	printf("введите два числа(индексы массивa < %d) \n", nn);
 
 
 	// будем менять значения массива
@@ -63,13 +63,13 @@ int mains()
 
 	
 	if ((d < nn && d >= 0) && (b < nn && b >= 0)) {
-		printf("элемента №%d до = %f \nэлемент №%d до= %f\n", d, arr[d], b, arr[b]); //выводим изначальные значения
+		//printf("элемента №%d до = %f \nэлемент №%d до= %f\n", d, arr[d], b, arr[b]); //выводим изначальные значения
 		float var;//перемен	ная для хранения изначального значения первого элемента
 		var = arr[d];
 		arr[d] = arr[b];
 		arr[b] = var; 
 
-		printf("элемента №%d после = %f \nэлемент №%d после = %f\n", d, arr[d], b, arr[b]); // выводим измененные данные
+		//printf("элемента №%d после = %f \nэлемент №%d после = %f\n", d, arr[d], b, arr[b]); // выводим измененные данные
 	}
 	else {
 		printf("индекс неправильный");
@@ -101,16 +101,18 @@ int mains()
 	}
 
 	//меняем местами максимальный и минимальный элементы
-	printf("элемента #max до = %f \nэлемент #min до= %f\n", arr[ind_max], arr[ind_min]); //выводим начальные данные
 
-	// здесь всё так же
 	float varr;
 	varr = arr[ind_max];
 	arr[ind_max] = arr[ind_min];
 	arr[ind_min] = varr;
 
-	printf("элемента #max после = %f \nэлемент #min после = %f\n", arr[ind_max], arr[ind_min]);// выводим измененные данные
-	
+
+	for (int i = 0; i < nn; i++)
+	{
+		printf("%f\n", arr[i]);
+	}
+
 	// будем искать элементы больше последнего нуля
 
 	int kkk;

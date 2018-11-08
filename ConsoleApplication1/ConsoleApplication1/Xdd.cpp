@@ -6,7 +6,7 @@
 #include <math.h> 
 #include <iostream> 
 
-int _tmain(int argc, _TCHAR* argv[]) 
+int _tmaqwein(int argc, _TCHAR* argv[]) 
 { 
 setlocale (LC_CTYPE,""); 
 float a[10]; 

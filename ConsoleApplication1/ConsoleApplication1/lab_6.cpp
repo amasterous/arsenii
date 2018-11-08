@@ -45,7 +45,7 @@ void change_elems(float arr[10][10], int i, int j, int i2, int j2) {
 	arr[i2][j2] = varr;
 }
 
-int maieen() {
+int main() {
 	setlocale(LC_CTYPE, "");
 
 	float arr[10][10];

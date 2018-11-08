@@ -136,7 +136,7 @@ void printf_a(int a[10][10], int x, int y) {
 }
 
 
-int mainXDDDDDDDD() {
+int mainqweqweqwe() {
 	setlocale(LC_CTYPE, "");
 	int a[10][10];
 	int x, y, n; // x - stroka, y - stolbec
@@ -178,4 +178,5 @@ int mainXDDDDDDDD() {
 	printf_a(c, x, y);
 
 	printf("%d", search_stolbec_with_max_sum(a, x, y));
+	return 0;
 }

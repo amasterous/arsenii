@@ -19,10 +19,13 @@ float input_array(float arr[10][10],int kolvo_strok,int kolvo_stolbcov) {
 }
 
 void output_array(float arr[10][10], int kolvo_strok, int kolvo_stolbcov) {
-	for (int i = 0; i < kolvo_strok; i++) {
-		for (int j = 0; j < kolvo_stolbcov; j++) {
-			printf("%7f\n",  arr[i][j]);
+	for (int i = 0; i < kolvo_strok; i++)
+	{
+		for (int j = 0; j < kolvo_stolbcov; j++)
+		{
+			printf("%.3f ", arr[i][j]);
 		}
+		printf("\n");
 	}
 }
 
@@ -45,7 +48,17 @@ void change_elems(float arr[10][10], int i, int j, int i2, int j2) {
 	arr[i2][j2] = varr;
 }
 
-int mainq() {
+float sredn_arifm(float arr[10][10], int stroka, int kolvo_stolbcov) {
+	float sredn = 0;
+	for (int i = 0; i < kolvo_stolbcov; i++)
+	{
+		sredn = sredn + arr[stroka][i];
+	}
+	sredn = sredn / (kolvo_stolbcov);
+	return sredn;
+}
+
+int main() {
 	setlocale(LC_CTYPE, "");
 
 	float arr[10][10];
@@ -73,13 +86,16 @@ int mainq() {
 	printf("введите номерр столбец(2): ");
 	scanf_s("%d", &yy);
 
-	printf("do %f\n", arr[x][xx]);
-	printf("do %f\n", arr[y][yy]);
-	
 	change_elems(arr, x, xx, y, yy);
 
-	printf("posle %f\n", arr[x][xx]);
-	printf("posle %f\n", arr[y][yy]);
+	output_array(arr, kolvo_strok, kolvo_stolbcov);
+
+	printf("srendee: \n");
+	int stroki_now;
+	scanf_s("%d", &stroki_now);
+	float sredddn;
+	sredddn = sredn_arifm(arr, stroki_now, kolvo_stolbcov);
+	printf("%f", sredddn);
 
 	_getch();
 	return 0;

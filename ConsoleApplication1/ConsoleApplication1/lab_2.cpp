@@ -1,4 +1,4 @@
-#pragma warning(disable:4996) 
+ï»¿#pragma warning(disable:4996) 
 #include "pch.h" 
 #include <conio.h> 
 #include <stdio.h> 
@@ -10,10 +10,11 @@
 int main()
 {
 	setlocale(LC_CTYPE, "");
-	printf("Ïåðâûé ïóíêò!!!!\n");
+	printf("ÐŸÐµÑ€Ð²Ñ‹Ð¹ Ð¿ÑƒÐ½ÐºÑ‚!!!!\n");
 	int n;
 	float sum;
-	printf("Ââåäèòå ÷èñëî n: ");
+	float x, x1, x2, x3, k;
+	printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾ n: ");
 	scanf_s("%d", &n);
 
 	sum = 0;
@@ -33,33 +34,53 @@ int main()
 	}
 	printf("%f", sum);
 	
-	printf("\n\n-----\nÒðåòèé ïóíêò!!!!");
+	printf("\n\n-----\nÐ’Ð¢ÐžÐ ÐžÐ¹ Ð¿ÑƒÐ½ÐºÑ‚!!!!");
+
+	printf("Ð²Ð²ÐµÐ´Ð¸Ñ‚Ðµ n: ");
+	scanf_s("%d", &n);
+	if (n >= 3) {
+		x1 = 5;
+		x2 = x1;
+		for (int i = 2; i < n; i++)
+		{
+			x = cos(x1) + cos(x2);
+			x1 = x2;
+			x2 = x;
+		}
+		printf("Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ñ… = %lf", x);
+	}
+	else {
+		printf("error!\n");
+	}
+
+
+	printf("\n\n-----\nÐ¢Ñ€ÐµÑ‚Ð¸Ð¹ Ð¿ÑƒÐ½ÐºÑ‚!!!!");
 	
 	// cos(Xn-1) + cos(Xn-2)
 	float e;
-	printf("Ââåäèòå òî÷íîñòü: ");
+	printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‚Ð¾Ñ‡Ð½Ð¾ÑÑ‚ÑŒ: ");
 	scanf_s("%f", &e);
 	sum = 0;
-	float x1, x2, x3, k;
+	
 	x1 = 0;
 	x2 = 0;
-	k = 3;
+	k = 10;
 	float fact = 1;
 	for (float i = 1; i <= k; i++)
 	{
 		k++;
 		x1 = x2;
 		fact = fact * i;
-		x2 = sum + pow(-2, i)/ fact;
+		x2 = sum + (pow(-2, i)/ fact);
 		sum = sum + x2;
 		x3 = abs(x2 - x1);
 		if (x3 < n)
 		{
-			i = k + 2;
+			i = k+2;
 		}
-		printf("%f\n", x2);
+		printf("%f\n", x3);
 	}
-	printf("Ñóììà %f\n", sum);
+	printf("Ð¡ÑƒÐ¼Ð¼Ð° %f\n", sum);
 
 	
 	return 0;

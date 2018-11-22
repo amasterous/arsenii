@@ -10,29 +10,31 @@
 int main()
 {
 	setlocale(LC_CTYPE, "");
-	
+
 	int n;
 	float sum;
 	scanf_s("%d", &n);
-
 	sum = 0;
 
-	for (int i = 0; i < n; i++)
+	for (int i = 1; i < n+1; i++)
 	{
-		int stepen = (-2) ^ i;
-		fact = 1;
-		if i != 0 && i != 1{
-			for (int a = 0; a < i; a++)
+		float stepen = pow(-2, i);
+		float fact = 1;
+		if ((i != 0) && (i != 1)){
+			for (int a = 1; a < i+1; a++)
 			{
 				fact = fact * a;
 			}
 		}
-		chlen = stepen / fact;
+		float chlen = stepen / fact;
+		printf("%f\n", stepen);
+		printf("%f\n", fact);
+		printf("%f\n\n --- \n", chlen);
 		sum = sum + chlen;
 	}
 	printf("%f", sum);
 	return 0;
 	_getch();
 
-	
+
 }

@@ -1,4 +1,4 @@
-﻿#pragma warning(disable:4996) 
+#pragma warning(disable:4996) 
 #include "pch.h" 
 #include <conio.h> 
 #include <stdio.h> 
@@ -19,12 +19,12 @@ int main()
 
 	sum = 0;
 
-	for (int i = 1; i < n+1; i++)
+	for (int i = 1; i < n + 1; i++)
 	{
 		float stepen = pow(-2, i);
 		float fact = 1;
-		if ((i != 0) && (i != 1)){
-			for (int a = 1; a < i+1; a++)
+		if ((i != 0) && (i != 1)) {
+			for (int a = 1; a < i + 1; a++)
 			{
 				fact = fact * a;
 			}
@@ -33,7 +33,7 @@ int main()
 		sum = sum + chlen;
 	}
 	printf("%f", sum);
-	
+
 	printf("\n\n-----\nВТОРОй пункт!!!!");
 
 	printf("введите n: ");
@@ -55,34 +55,34 @@ int main()
 
 
 	printf("\n\n-----\nТретий пункт!!!!");
-	
+
 	// cos(Xn-1) + cos(Xn-2)
 	float e;
 	printf("Введите точность: ");
 	scanf_s("%f", &e);
 	sum = 0;
-	
+
 	x1 = 0;
 	x2 = 0;
-	k = 10;
+	k = 1;
 	float fact = 1;
 	for (float i = 1; i <= k; i++)
 	{
 		k++;
 		x1 = x2;
 		fact = fact * i;
-		x2 = sum + (pow(-2, i)/ fact);
+		x2 = sum + (pow(-2, i) / fact);
 		sum = sum + x2;
 		x3 = abs(x2 - x1);
-		if (x3 < n)
+		if (x3 < e)
 		{
-			i = k+2;
+			i = k + 2;
 		}
 		printf("%f\n", x3);
 	}
 	printf("Сумма %f\n", sum);
 
-	
+
 	return 0;
 	_getch();
 

@@ -58,7 +58,7 @@ float sredn_arifm(float arr[10][10], int stroka, int kolvo_stolbcov) {
 	return sredn;
 }
 
-int main() {
+int ma1233adzzxcczxin() {
 	setlocale(LC_CTYPE, "");
 
 	float arr[10][10];

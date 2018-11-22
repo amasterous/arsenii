@@ -27,9 +27,6 @@ int main()
 			}
 		}
 		float chlen = stepen / fact;
-		printf("%f\n", stepen);
-		printf("%f\n", fact);
-		printf("%f\n\n --- \n", chlen);
 		sum = sum + chlen;
 	}
 	printf("%f", sum);

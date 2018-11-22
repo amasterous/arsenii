@@ -30,7 +30,9 @@ int main()
 		chlen = stepen / fact;
 		sum = sum + chlen;
 	}
-	printf("%f", sum)
+	printf("%f", sum);
+	return 0;
+	_getch();
 
 	
 }

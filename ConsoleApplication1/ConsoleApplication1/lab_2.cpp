@@ -57,34 +57,38 @@ int main()
 	printf("\n\n-----\nТретий пункт!!!!");
 
 	// cos(Xn-1) + cos(Xn-2)
-	float e;
+	float eee;
 	printf("Введите точность: ");
-	scanf_s("%f", &e);
-	sum = 0;
-
-	x1 = 0;
-	x2 = 0;
-	k = 1;
+	scanf_s("%f", &eee);
+	
+	float newx1, newx2, newsum;
+	newx1 = 0;
+	newx2 = 0;
+	newsum = 0;
+	k = 10;
 	float fact = 1;
 	for (float i = 1; i <= k; i++)
 	{
 		k++;
-		x1 = x2;
+		newx1 = newx2;
 		fact = fact * i;
-		x2 = sum + (pow(-2, i) / fact);
-		sum = sum + x2;
-		x3 = abs(x2 - x1);
-		if (x3 < e)
+		newx2 = (pow(-2, i) / fact);
+		newsum = newsum + newx2;
+		
+		if (abs(newx2-newx1) < eee)
 		{
+			printf("Face");
 			i = k + 2;
 		}
-		printf("%f\n", x3);
+		
 	}
-	printf("Сумма %f\n", sum);
+	printf("Сумма %f\n", newsum);
 
 
-	return 0;
+	
 	_getch();
+	return 0;
+	
 
 
 }

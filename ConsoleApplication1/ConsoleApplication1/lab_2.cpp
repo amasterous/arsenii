@@ -77,15 +77,11 @@ int main()
 		
 		if (abs(newx2-newx1) < eee)
 		{
-			printf("Face");
 			i = k + 2;
 		}
 		
 	}
 	printf("Сумма %f\n", newsum);
-
-
-	
 	_getch();
 	return 0;
 	

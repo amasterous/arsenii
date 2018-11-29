@@ -1,4 +1,4 @@
-﻿#pragma warning(disable:4996) 
+#pragma warning(disable:4996) 
 #include "pch.h" 
 #include <conio.h> 
 #include <stdio.h> 
@@ -14,7 +14,7 @@ void change_ten(int a[10][10], int x, int y) {
 			a[x][i] = 0;
 		}
 	}
-	
+
 }
 
 void change_stolbci(int a[10][10], int first_x, int y, int second_x) {
@@ -76,7 +76,7 @@ int search_stolbec_with_max_sum(int arr[10][10], int x, int y) {
 		}
 	}
 	return stolb_num_max;
-	
+
 }
 
 int* get_max(int a[10][10], int x, int y, int* ar) {
@@ -95,6 +95,7 @@ int* get_max(int a[10][10], int x, int y, int* ar) {
 			}
 		}
 	}
+	printf("Max elem = %d\n", max);
 	return ar;
 }
 
@@ -136,7 +137,7 @@ void printf_a(int a[10][10], int x, int y) {
 }
 
 
-int mainqweqweqwe() {
+int main() {
 	setlocale(LC_CTYPE, "");
 	int a[10][10];
 	int x, y, n; // x - stroka, y - stolbec
@@ -150,10 +151,11 @@ int mainqweqweqwe() {
 	get_max(a, x, y, ar_max);
 	get_min(a, x, y, ar_min);
 	change(a, ar_min[0], ar_min[1], ar_max[0], ar_max[1]);
+	printf("меняем местами первый максимальный и последний минимальный элементы:\n");
 	printf_a(a, x, y);
 
 	int nn; // индекс строки в которой меняем значения
-	printf("введите индекс строки в которой меняем значения: ");
+	printf("введите индекс строки в которой меняем значения больше 10 на 0: ");
 	scanf_s("%d", &nn);
 	change_ten(a, nn, y);
 	printf_a(a, x, y);
@@ -177,6 +179,6 @@ int mainqweqweqwe() {
 	printf("массив с \n");
 	printf_a(c, x, y);
 
-	printf("%d", search_stolbec_with_max_sum(a, x, y));
+	printf("индекс столбца с макс суммой элементов = %d", search_stolbec_with_max_sum(a, x, y));
 	return 0;
 }

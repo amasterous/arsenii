@@ -69,6 +69,8 @@ int ma1233adzzxcczxin() {
 	scanf_s("%d", &kolvo_strok);
 	printf("введите кол-во столбцов (<10)");
 	scanf_s("%d", &kolvo_stolbcov);
+	if ((n>0)&&(n<=10)&&(m>0)&&(m<=10))
+	{
 
 	input_array(arr,kolvo_strok, kolvo_stolbcov);
 
@@ -96,6 +98,9 @@ int ma1233adzzxcczxin() {
 	float sredddn;
 	sredddn = sredn_arifm(arr, stroki_now, kolvo_stolbcov);
 	printf("%f", sredddn);
+	}
+	else
+		printf("размерность введена неверно");
 
 	_getch();
 	return 0;

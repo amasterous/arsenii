@@ -26,7 +26,7 @@ void output_array(int mass[10][10], int n, int m)
 	}
 }
 
-void task1(int mass[10][10], int n, int m)
+void pol_elem(int mass[10][10], int n, int m)
 {
 	int kol=0;
 	for(int i=0;i<n;i++)
@@ -37,7 +37,7 @@ void task1(int mass[10][10], int n, int m)
 
 }
 
-void task2(int mass[10][10], int n, int m)
+void sredn_arif(int mass[10][10], int n, int m)
 {
 	int mid=0;
 	int j=0;
@@ -50,7 +50,7 @@ void task2(int mass[10][10], int n, int m)
 	printf("Среднее арифметическое элементов побочной диагонали - %d \n", mid);
 }
 
-void task3(int mass[10][10], int n, int m,int mass1[10][10],int mass2[10][10])
+void massive(int mass[10][10], int n, int m,int mass1[10][10],int mass2[10][10])
 {
 	for(int i=0;i<n;i++)
 	{
@@ -84,8 +84,8 @@ int _tmain(int argc, _TCHAR* argv[])
 			int c[10][10],n3,m3;
 			input_rand_array(b,n2,m2);
 			output_array(b,n2,m2);
-			task1(a,n1,m1);
-			task2(a,n1,m1);
+			pol_elem(a,n1,m1);
+			sredn_arif(a,n1,m1);
 			if(n2<n1)
 				n3=n2;
 			else
@@ -94,7 +94,7 @@ int _tmain(int argc, _TCHAR* argv[])
 				m3=m2;
 			else
 				m3=m1;
-			task3(c,n3,m3,a,b);
+			massive(c,n3,m3,a,b);
 		}
 		else
 			puts("Неверно введен размер массива b");

@@ -39,7 +39,7 @@ void pol_elem(int mass[10][10], int n, int m)
 
 void sredn_arif(int mass[10][10], int n, int m)
 {
-	int mid=0;
+	float mid=0;
 	int j=0;
 	for(int i=0;i<n;i++)
 	{	

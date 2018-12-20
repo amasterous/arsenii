@@ -8,15 +8,17 @@
 
 
 void change_ten(int a[10][10], int x, int y) {
+	bool flag = false;
 	for (int i = 0; i < y; i++)
 	{
 		if (a[x][i] > 10) {
 			a[x][i] = 0;
+			bool flag = true;
 		}
 	}
-
+	if (flag == false)
+		printf("нет таких аргументов");
 }
-
 void change_stolbci(int a[10][10], int first_x, int y, int second_x) {
 	int var;
 	for (int i = 0; i < y; i++)

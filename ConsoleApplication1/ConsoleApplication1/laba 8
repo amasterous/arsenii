@@ -1,0 +1,136 @@
+#include "pch.h" 
+#include <conio.h> 
+#include <clocale> 
+#include <stdio.h> 
+#include <math.h> 
+#pragma warning (disable: 4996) 
+#include <iostream> 
+#include <stdlib.h> 
+#include <time.h> 
+
+void input(int a[10][10], int &n, int &m, FILE *F1)
+{
+	fscanf(F1, "%d", &n);
+	fscanf(F1, "%d", &m);
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			fscanf(F1, "%d", &a[i][j]);
+		}
+	}
+}
+
+void output(int mas[10][10], int n, int m)
+{
+	int i, j;
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < m; j++)
+		{
+			printf("%4d", mas[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+void sq_matrix(int a[10][10], int b[10][10], int n, FILE *F2)
+{
+	fprintf(F2, "Выделенная матрица\n");
+	fprintf(F2, "Рзамер матрицы %d*%d\n", n, n);
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			b[i][j] = a[i][j];
+			fprintf(F2, "%4d", a[i][j]);
+		}
+		fprintf(F2, "\n");
+	}
+}
+
+int max(int a[10][10], int n, int m, int &index_i, int &index_j)
+{
+	int i, j;
+	int max = a[0][0];
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < m; j++)
+		{
+			if (a[i][j] > max)
+			{
+				max = a[i][j];
+				index_i = i;
+				index_j = j;
+			}
+		}
+	}
+	return max;
+}
+
+int count(int b[10][10], int n, int &index)
+{
+	int count = 0;
+	for (int i = n - 1; i >= 0; i--)
+	{
+		if (b[i][i] % 4 == 0)
+		{
+			count++;
+			index = i;
+		}
+	}
+	return count;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+
+	int a[10][10], n, m;
+	FILE *F1;
+	F1 = fopen("text1.txt", "r");
+	if (F1 == NULL)
+	{
+		puts("Файл не открылся");
+		getch();
+		return 1;
+	}
+	input(a, n, m, F1);
+	puts("Массив a:");
+	output(a, n, m);
+	fclose(F1);
+
+	FILE *F2;
+	F2 = fopen("text.txt", "w");
+	if (F2 == NULL)
+	{
+		puts("Файл не открылся");
+		getch();
+		return 1;
+	}
+	int b[10][10];
+	int n2 = 0;
+	if (n < m)
+	{
+		n2 = n;
+		sq_matrix(a, b, n2, F2);
+	}
+	else
+	{
+		n2 = m;
+		sq_matrix(a, b, n2, F2);
+	}
+	fclose(F2);
+
+	int index_i = 0, index_j = 0;
+	int max1 = max(a, n, m, index_i, index_j);
+	printf("Максимальный элемент в массиве a равен = %d, а индексы первого максимального [%d][%d]\n", max1, index_i + 1, index_j + 1);
+
+	int index;
+	int c = count(b, n2, index);
+	printf("Количество элементов кратных 4 на главной диагонали квадратной матрицы равно %d, а индексы первого кратного элемента [%d][%d]\n", c, index + 1, index + 1);
+
+	getch();
+	return 0;
+}
+

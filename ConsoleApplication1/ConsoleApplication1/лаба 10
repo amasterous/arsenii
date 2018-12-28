@@ -1,145 +1,134 @@
 #include "stdafx.h"
-#include <stdio.h>
-#include <math.h>
 #include <conio.h>
 #include <clocale>
+#include <math.h>
+#pragma warning (disable: 4996)
 #include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
-#pragma warning (disable:4996)
 
-void output(char a[], int n)
+void input(char *a , int n)
 {
-	for (int i = 0; i < n; i++)
-		printf(" %c \n", a[i]);
+	 for (int i=0; i<n; i++)
+    {
+        scanf("%c", &a[i]);
+        getchar();
+    }
 }
 
-void input(char *c, int n)
+void inputc(char *c , int p)
 {
-	for (int i = 0; i < n; i++)
+	for(int i=0;i<p;i++)
 	{
-		c[i] = getch();
-		//getch();
+    printf("Введите %d элемент массива C \n", i+1);
+    c[i]=getch();
+    }
+}
+
+void output_arr(char *a, int n)
+{
+	int i;
+	for (i=0; i<n; i++)
+		printf("%4c", a[i]);
+	printf("\n");
+}
+
+int count_elem_x( char *a, int n, int &index)
+{
+    int i;
+    int count;
+    count =0;
+    for ( i=n-1; i>=0; i--)
+    {
+        if (a[i]=='X')
+        {
+            count++;
+            index = i;
+        }
+    }
+    return count;
+}
+
+void input_k(int **k, int n, int m)
+{
+    srand(time(NULL));
+    for(int i=0; i<n; i++)
+	{
+        for (int j=0;j<m; j++)
+        k[i][j]=rand()%11;
 	}
 }
 
-int coolx(char a[], int n, int &ind)
+void output_k(int **k, int n, int m)
 {
-	int col = 0;
-	int i = 0;
-	bool flag = false;
-	for (i = 0; i < n; i++)
-		if (a[i] == 'x')
-		{
-			col++;
-			if (flag == false)
-			{
-				ind = i;
-				flag = true;
-			}
-		}
-	return col;
-}
-
-void inputrand(int **k, int n, int m)
-{
-	for (int i = 0; i < n; i++)
-		for (int j = 0; j < m; j++)
-			k[i][j] = rand() % 11;
-}
-
-void outputk(int **k, int n, int m)
-{
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			printf("k[%d][%d]=%d адрес (%d) ", i + 1, j + 1, k[i][j], &k[i][j]);
-		}
-		printf("\n");
+    for (int i=0; i<n; i++)
+    {
+        for (int j=0;j<m;j++)
+            printf ( "%d [%d] ", k[i][j], &k[i][j]);
+            printf("\n");
 	}
-
 }
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	setlocale(LC_CTYPE, "");
-	//srand(time(NULL));
-	//1
-	char a[8];
-	int razmera = 8;
-	puts("Введите элементы массива а");
-	for (int i = 0; i < 8; i++)
-	{
-		scanf("%c", &a[i]);
-		getchar();
-	}
-	puts("\nМассив а\n");
-	output(a, razmera);
-
-	char b[8];
-	int razmerb = 8;
-	puts("\nВведите элементы массива b");
-	for (int i = 0; i < 8; i++)
-	{
-		b[i] = getchar();
-		getchar();
-	}
-	printf("\nМассив в\n\n");
-	output(b, razmerb);
-
-	//2
-	int razmerc;
-	puts("\nВведите размерность динамического массива");
-	scanf("%d", &razmerc);
-	char *c;
-	c = new char[razmerc];
-	puts("\nВведите элементы массива с без пробелов/enter\n");
-	input(c, razmerc);
-	puts("\nМассив с\n");
-	output(c, razmerc);
-	printf("\n\n");
-
-	//3 
-	int n, n1, m, m1;
-	n1 = 0;
-	m1 = 0;
-	n = 0;
-	m = 0;
-	n = coolx(a, razmera, n1);
-	m = coolx(b, razmerb, m1);
-	printf("Количество элементов х в массиве а равно %d, \n", n);
-	if (n > 0) printf("Инедкс первого х в массиве а [%d]\n", n1 + 1);
-	printf("Количество элементов х в массиве в равно %d,\n", m);
-	if (m > 0) printf("Инедкс первого х в масииве в [%d]\n", m1 + 1);
-	//4 
-	int **k;
-	if ((n == 0) || (m == 0))
-	{
-		printf("Массив создать невозможно");
-	}
-	else
-	{
-		k = new int *[n];
-		for (int i = 0; i < n; i++)
-			k[i] = new int[m];
-
-		//5
-		inputrand(k, n, m);
-		printf("\nМассив k\n\n");
-		outputk(k, n, m);
-
-		//6
-		if ((n1 > n) || (m1 > m))
-		{
-			printf("Элемента с индексом [%d][%d] не существует\n\n", n1 + 1, m1 + 1);
-		}
-		else
-		{
-			k[n1][m1] = 0;
-			printf("\nМассив с заменой элемента k[%d][%d]\n\n", n1 + 1, m1 + 1);
-			outputk(k, n, m);
-		}
-	}
-	getch();
-	return 0;
+    setlocale(LC_CTYPE,"");
+    int i;
+    char *A, *B;
+    A=new char[6];
+    B=new char[6];
+    printf(" введите элементы массива А\n");
+    input(A,6);
+    printf(" введите элементы массива B\n");
+    for (i=0; i<6; i++)
+    {
+        scanf("%c", &B[i]);
+        getchar();
+    }
+    printf(" вывод элементов массива А\n");
+    output_arr(A, 6);
+    printf(" вывод элементов массива B\n");
+    output_arr(B, 6);
+    char *C;
+    int p;
+    puts("Введите размерность массива C");
+    scanf("%d", &p);
+    C = new char[p];
+    inputc(C , p);
+    puts("Вывод массива С \n"); 
+    output_arr(C,p);
+    delete[]C;
+    int N, N1, M, M1;
+    N=count_elem_x( A, 6, N1 );
+    M=count_elem_x( B, 6, M1 );
+    printf(" количество элементв равных X в массиве А\n");
+    printf("%d\n", N);
+    printf(" индекс первого элемента равного X в массиве А\n");
+    printf("%d\n", N1);
+    printf(" количество элементв равных X в массиве B\n");
+    printf("%d\n", M);
+    printf(" индекс первого элемента равного X в массиве B\n");
+    printf("%d\n", M1);
+    if (N==0||M==0)
+        printf("Нельзя создать массив");
+    int **k;
+    k= new int*[N];
+    for( int h=0; h<N;h++)
+    {
+        k[h]=new int[M];
+    }
+    input_k(k, N, M);
+    output_k(k, N, M);
+    if(N1<=N&&M1<=M)
+    {
+        k[N1][M1]=0;
+        printf("измененный массиив K\n");
+        output_k(k, N, M);
+        for (i=0; i<N; i++)
+            delete[]*(k+i);
+        delete[]k;
+    }
+	delete[6]A;
+	delete[6]B;
+    getch();
+    return 0;
 }

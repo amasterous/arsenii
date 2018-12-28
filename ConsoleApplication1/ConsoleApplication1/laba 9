@@ -1,0 +1,207 @@
+#include "pch.h"
+#include <conio.h> 
+#include <clocale> 
+#include <stdio.h> 
+#include <math.h> 
+#pragma warning (disable: 4996) 
+#include <iostream> 
+#include <stdlib.h> 
+#include <time.h> 
+
+void inputA(int a[8], FILE *F1)
+{
+	for (int i = 0; i < 8; i++)
+	{
+		fscanf(F1, "%d", &a[i]);
+
+	}
+}
+
+void outputA1(int mas[8])
+{
+	for (int i = 0; i < 8; i++)
+	{
+		printf("%4d [%d]\n", mas[i], &mas[i]);
+	}
+}
+
+void outputA2(int a[8])
+{
+	for (int i = 0; i < 8; i++)
+	{
+		printf("%4d [%d]\n", *(a + i), (a + i));
+	}
+}
+
+void inputB(float b[3][2], FILE *F2)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			fscanf(F2, "%1f", &b[i][j]);
+		}
+	}
+}
+
+void outputB1(float b[3][2])
+{
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			printf("%8.1f [%d] ", b[i][j], &b[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+void outputB2(float b[3][2])
+{
+	float *b1;
+	b1 = *b;
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			printf("%8.1f [%d] ", *((b1 + i * 2) + j), ((b1 + i * 2) + j));
+		}
+		printf("\n");
+	}
+}
+
+void inputC(double c[3][2], FILE *F2)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			fscanf(F2, "%1lf", &c[i][j]);
+		}
+	}
+}
+
+void outputC1(double c[3][2])
+{
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			printf("%8.1lf [%d] ", c[i][j], &c[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+void outputC2(double c[3][2])
+{
+	double *c1;
+	c1 = *c;
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			printf("%8.1lf [%d] ", *((c1 + i * 2) + j), ((c1 + i * 2) + j));
+		}
+		printf("\n");
+	}
+}
+
+
+
+void change(double c[3][2], int n1, int n2)
+{
+	double c1, *c2;
+	c2 = *c;
+	for (int j = 0; j < 2; j++)
+	{
+		c1 = *((c2 + 2 * n1) + j);
+		*((c2 + 2 * n1) + j) = *((c2 + 2 * n2) + j);
+		*((c2 + 2 * n2) + j) = c1;
+	}
+}
+
+
+int main()
+{
+	setlocale(LC_CTYPE, "");
+
+	int a[8];
+	FILE *F1;
+	F1 = fopen("f1.txt", "r");
+	if (F1 == NULL)
+	{
+		puts("Файл не открылся");
+		getch();
+		return 1;
+	}
+	inputA(a, F1);
+	puts("Массив a (обращение к элементу по индексу):\n");
+	outputA1(a);
+	puts("\n");
+	puts("Массив a (обращение к элементу по адресу):\n");
+	outputA2(a);
+	puts("\n");
+	fclose(F1);
+
+	float b[3][2];
+	FILE *F2;
+	F2 = fopen("f2.txt", "r");
+	if (F2 == NULL)
+	{
+		puts("Файл не открылся");
+		getch();
+		return 1;
+	}
+	inputB(b, F2);
+	puts("Массив b (обращение к элементу по индексу):\n");
+	outputB1(b);
+	puts("\n");
+	puts("Массив b (обращение к элементу по адресу):\n");
+	outputB2(b);
+	puts("\n");
+
+	F2 = fopen("f2.txt", "r");
+	if (F2 == NULL)
+	{
+		puts("Файл не открылся");
+		getch();
+		return 1;
+	}
+	double c[3][2];
+	inputC(c, F2);
+	puts("Массив c (обращение к элементу по индексу):\n");
+	outputC1(c);
+	puts("\n");
+	puts("Массив c (обращение к элементу по адресу):\n");
+	outputC2(c);
+	puts("\n");
+
+	int n1, n2;
+	do
+	{
+		puts("Введите номер 1 строки");
+		scanf("%d", &n1);
+	} while (n1 < 1 || n1>3);
+
+	do
+	{
+		puts("Введите номер 2 строки");
+		scanf("%d", &n2);
+	} while (n2 < 1 || n2>3);
+
+	change(c, n1 - 1, n2 - 1);
+	outputC1(c);
+
+	getch();
+	return 0;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,145 @@
+#include "stdafx.h"
+#include <stdio.h>
+#include <math.h>
+#include <conio.h>
+#include <clocale>
+#include <stdlib.h>
+#include <time.h>
+#pragma warning (disable:4996)
+
+void output(char a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		printf(" %c \n", a[i]);
+}
+
+void input(char *c, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		c[i] = getch();
+		//getch();
+	}
+}
+
+int coolx(char a[], int n, int &ind)
+{
+	int col = 0;
+	int i = 0;
+	bool flag = false;
+	for (i = 0; i < n; i++)
+		if (a[i] == 'x')
+		{
+			col++;
+			if (flag == false)
+			{
+				ind = i;
+				flag = true;
+			}
+		}
+	return col;
+}
+
+void inputrand(int **k, int n, int m)
+{
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < m; j++)
+			k[i][j] = rand() % 11;
+}
+
+void outputk(int **k, int n, int m)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			printf("k[%d][%d]=%d адрес (%d) ", i + 1, j + 1, k[i][j], &k[i][j]);
+		}
+		printf("\n");
+	}
+
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	setlocale(LC_CTYPE, "");
+	//srand(time(NULL));
+	//1
+	char a[8];
+	int razmera = 8;
+	puts("Введите элементы массива а");
+	for (int i = 0; i < 8; i++)
+	{
+		scanf("%c", &a[i]);
+		getchar();
+	}
+	puts("\nМассив а\n");
+	output(a, razmera);
+
+	char b[8];
+	int razmerb = 8;
+	puts("\nВведите элементы массива b");
+	for (int i = 0; i < 8; i++)
+	{
+		b[i] = getchar();
+		getchar();
+	}
+	printf("\nМассив в\n\n");
+	output(b, razmerb);
+
+	//2
+	int razmerc;
+	puts("\nВведите размерность динамического массива");
+	scanf("%d", &razmerc);
+	char *c;
+	c = new char[razmerc];
+	puts("\nВведите элементы массива с без пробелов/enter\n");
+	input(c, razmerc);
+	puts("\nМассив с\n");
+	output(c, razmerc);
+	printf("\n\n");
+
+	//3 
+	int n, n1, m, m1;
+	n1 = 0;
+	m1 = 0;
+	n = 0;
+	m = 0;
+	n = coolx(a, razmera, n1);
+	m = coolx(b, razmerb, m1);
+	printf("Количество элементов х в массиве а равно %d, \n", n);
+	if (n > 0) printf("Инедкс первого х в массиве а [%d]\n", n1 + 1);
+	printf("Количество элементов х в массиве в равно %d,\n", m);
+	if (m > 0) printf("Инедкс первого х в масииве в [%d]\n", m1 + 1);
+	//4 
+	int **k;
+	if ((n == 0) || (m == 0))
+	{
+		printf("Массив создать невозможно");
+	}
+	else
+	{
+		k = new int *[n];
+		for (int i = 0; i < n; i++)
+			k[i] = new int[m];
+
+		//5
+		inputrand(k, n, m);
+		printf("\nМассив k\n\n");
+		outputk(k, n, m);
+
+		//6
+		if ((n1 > n) || (m1 > m))
+		{
+			printf("Элемента с индексом [%d][%d] не существует\n\n", n1 + 1, m1 + 1);
+		}
+		else
+		{
+			k[n1][m1] = 0;
+			printf("\nМассив с заменой элемента k[%d][%d]\n\n", n1 + 1, m1 + 1);
+			outputk(k, n, m);
+		}
+	}
+	getch();
+	return 0;
+}

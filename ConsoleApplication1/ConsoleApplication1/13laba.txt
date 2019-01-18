@@ -1,0 +1,213 @@
+#include "pch.h"
+#include <conio.h>
+#include <stdlib.h>
+#include <iostream>
+#pragma warning(disable:4996)
+#include <stdio.h>
+#include <string.h>
+#include <clocale>
+
+int count(FILE *f1)
+{
+	int n = 0; double n1 = 0, h = 0;
+	while (fscanf(f1, "%lf", &n1) != EOF)
+	{
+		h++;
+		n = sqrt(h);
+	}
+	printf("Размерность массива : [%d]на[%d]\n", n, n);
+	return n;
+}
+
+void output(double **a, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+			printf("%7.2lf", *(*(a + i) + j));
+		printf("\n");
+	}
+
+}
+
+void chislo(double **a, int n, double c, int &im, int &jm, int &q)
+{
+	q = 0;
+	for (int i = 0; i < n; i++)
+		for (int j = i; j < n; j++)
+		{
+			if (a[i][j] == c)
+			{
+				im = i;
+				jm = j;
+				q++;
+				j = n; i = n;
+			}
+		}
+}
+
+
+
+
+void sss(double **a, int n, int k)
+{
+	double tmp = 0;
+		for (int j = 0; j < n-1; j++)
+		{
+			if (a[k][j] > a[k][j + 1])
+			{
+				tmp = a[k][j + 1];
+				a[k][j + 1] = a[k][j];
+				a[k][j] = tmp;
+			}
+		}
+
+	FILE *f2;
+	f2 = fopen("f2.txt", "w");
+	if (f2 == NULL)
+	{
+		printf("Не удалось открыть файл!");
+		exit(1);
+	}
+	else
+	{
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < n; j++)
+				fprintf(f2, "%7.2lf", a[i][j]);
+			fprintf(f2, "\n");
+		}
+	}
+	fclose(f2);
+
+}
+
+
+
+
+
+
+int main()
+{
+	setlocale(LC_CTYPE, "");
+	int n, im, jm, q, n1, ia = 0, g = 0;
+	double c = 0;
+
+	FILE *f1;
+	f1 = fopen("f1.txt", "r");
+	if (f1 == NULL)
+	{
+		printf("Не удалось открыть файл!");
+		getch();
+		return 1;
+	}
+	else
+	{
+		n = count(f1);
+	}
+	fclose(f1);
+
+
+	double **a;
+	a = new double*[n];
+	for (int i = 0; i < n; i++)
+		a[i] = new double[n];
+	f1 = fopen("f1.txt", "r");
+	if (f1 == NULL)
+	{
+		printf("Не удалось открыть файл!");
+		getch();
+		return 1;
+	}
+	else
+	{
+		for (int i = 0; i < n; i++)
+			for (int j = 0; j < n; j++)
+				fscanf(f1, "%lf", *(a + i) + j);
+		output(a, n);
+	}
+	fclose(f1);
+
+
+	puts("\nВведите число, которое необходимо найти на главной дигонали и выше: ");
+	scanf("%lf", &c);
+	chislo(a, n, c, im, jm, q);
+	if (q != 0)
+		printf("Индексы первого такого элемента: [%d][%d]\n", im, jm);
+	else
+		printf("нет такого числа\n");
+
+	puts("\nВведите размерность строки b");
+	scanf("%d", &n1);
+	char *b = new char[n1 + 1];
+	puts("Введите массив b");
+	getchar();
+	scanf("%s", b);
+
+	puts("Массив b");
+	puts(b);
+	for (int i = 0; i < n1; i++)
+		if (b[i] == 'a')
+		{
+			ia = i;
+			printf("\nИндекс первого а= [%d]\n", ia);
+			g++; i = n1;
+		}
+	if (g == 0)
+		printf("В массиве нет элемента 'a'\nЗамены не произошло\n\n");
+
+
+	else
+	{
+		if (n > ia)
+		{
+			a[ia][ia] = 0;
+			printf("массив после замены:\n");
+			output(a, n);
+		}
+		else
+			printf("В массиве нет элемента с индексами, равными индексу превого 'a'\n");
+	}
+
+
+
+
+
+
+	char str[100];
+	char word[100];
+	printf("Введите строку:\n");
+	scanf("%s", str);
+
+
+	int k = 0;
+	for (int i = 0;str[i]!='\0'; i++)
+	{
+		if (str[i]==' ')
+			k++;
+	}
+	printf("введенная строка:\n");
+	puts(str);
+	printf("Количество слов в строке = %d\n", k+1);
+
+	if (k+1 >= 0 && k+1 < n)
+	{
+		sss(a, n, k+1);
+		printf("отсортированная матрица записана в файл f2");
+	}
+	else
+	{
+		printf("в матрице строки с индексом k=%d нет!\nCортировка не произошла! Файл остался пуст\n", k+1);
+	}
+
+
+
+
+	for (int h = 0; h < n; h++)
+		delete[] a[h];
+	delete[] a;
+
+	delete[] b;
+	getch();
+	return 0;
+}

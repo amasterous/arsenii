@@ -1,0 +1,134 @@
+#include "stdafx.h"
+#include <conio.h>
+#include <clocale>
+#include <math.h>
+#pragma warning (disable: 4996)
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+
+void input(char a[6] , int n)
+{
+	 for (int i=0; i<n; i++)
+    {
+        scanf("%c", &a[i]);
+        getchar();
+    }
+}
+
+void inputc(char *c , int p)
+{
+	for(int i=0;i<p;i++)
+	{
+    printf("Введите %d элемент массива C \n", i+1);
+    c[i]=getch();
+    }
+}
+
+void output_arr(char *a, int n)
+{
+	int i;                                               
+	for (i=0; i<n; i++)
+		printf("%4c", a[i]);
+	printf("\n");
+}
+
+int count_elem_x( char *a, int n, int &index)
+{
+    int i;
+    int count;
+    count =0;
+    for ( i=n-1; i>=0; i--)
+    {
+        if (a[i]=='x')
+        {
+            count++;
+            index = i;
+        }
+    }
+    return count;
+}
+
+void input_k(int **k, int n, int m)
+{
+    srand(time(NULL));
+    for(int i=0; i<n; i++)
+	{
+        for (int j=0;j<m; j++)
+        k[i][j]=rand()%11;
+	}
+}
+
+void output_k(int **k, int n, int m)
+{
+    for (int i=0; i<n; i++)
+    {
+        for (int j=0;j<m;j++)
+            printf ( "%d [%d] ", k[i][j], &k[i][j]);
+            printf("\n");
+	}
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+    setlocale(LC_CTYPE,"");
+    int i;
+    char A[6], B[6];
+    printf(" введите элементы массива А\n");
+    input(A,6);
+    printf(" введите элементы массива B\n");
+    for (i=0; i<6; i++)
+    {
+        B[i]=getchar();
+        getchar();
+    }
+    printf(" вывод элементов массива А\n");
+    output_arr(A, 6);
+    printf(" вывод элементов массива B\n");
+    output_arr(B, 6);
+    char *C;
+    int p;
+    puts("Введите размерность массива C");
+    scanf("%d", &p);
+    C = new char[p];
+    inputc(C , p);
+    puts("Вывод массива С \n"); 
+    output_arr(C,p);
+    delete[]C;
+    int N, N1, M, M1;
+    N=count_elem_x( A, 6, N1 );
+    M=count_elem_x( B, 6, M1 );
+    printf(" количество элементв равных X в массиве А\n");
+    printf("%d\n", N);
+    printf(" индекс первого элемента равного X в массиве А\n");
+    printf("%d\n", N1);
+    printf(" количество элементв равных X в массиве B\n");
+    printf("%d\n", M);
+    printf(" индекс первого элемента равного X в массиве B\n");
+    printf("%d\n", M1);
+    if (N==0||M==0)
+        printf("Нельзя создать массив");
+    int **k;
+    k= new int*[N];
+    for( int h=0; h<N;h++)
+    {
+        k[h]=new int[M];
+    }
+    input_k(k, N, M);
+    output_k(k, N, M);
+    if(N1<=N&&M1<=M)
+    {
+        k[N1][M1]=0;
+	}
+	else
+	{
+		printf("нет такого элемента");
+	}
+        printf("измененный массиив K\n");
+        output_k(k, N, M);
+        for (i=0; i<N; i++)
+            delete[]*(k+i);
+        delete[]k;
+    getch();
+    return 0;
+}
